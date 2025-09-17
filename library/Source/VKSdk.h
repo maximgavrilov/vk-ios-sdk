@@ -307,7 +307,7 @@ Initialize SDK with responder for global SDK events.
 + (void)wakeUpSession:(NSArray *)permissions completeBlock:(void (^)(VKAuthorizationState state, NSError *error))wakeUpBlock;
 
 /**
-Forces logout using OAuth (with VKAuthorizeController). Removes all cookies for *.vk.com.
+Forces logout using OAuth (with VKAuthorizeController). Removes all cookies for *.vk.com and *.vk.ru.
 Has no effect for logout in VK app
 */
 + (void)forceLogout;

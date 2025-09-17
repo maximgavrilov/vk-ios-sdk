@@ -314,7 +314,7 @@ static NSString *VK_ACCESS_TOKEN_DEFAULTS_KEY = @"VK_ACCESS_TOKEN_DEFAULTS_KEY_D
         return NO;
     }
     NSDictionary *parametersDict = [VKUtil explodeQueryString:parametersString];
-    BOOL inAppCheck = [[passedUrl host] isEqual:@"oauth.vk.com"];
+    BOOL inAppCheck = [[passedUrl host] isEqual:@"oauth.vk.ru"];
 
     void (^throwError)(void) = ^{
         VKError *error = [VKError errorWithQuery:parametersDict];
@@ -388,7 +388,8 @@ static NSString *VK_ACCESS_TOKEN_DEFAULTS_KEY = @"VK_ACCESS_TOKEN_DEFAULTS_KEY_D
     NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
 
     for (NSHTTPCookie *cookie in cookies)
-        if (NSNotFound != [cookie.domain rangeOfString:@"vk.com"].location) {
+        if ([cookie.domain containsString:@"vk.com"] ||
+            [cookie.domain containsString:@"vk.ru"]) {
             [[NSHTTPCookieStorage sharedHTTPCookieStorage]
                     deleteCookie:cookie];
         }
